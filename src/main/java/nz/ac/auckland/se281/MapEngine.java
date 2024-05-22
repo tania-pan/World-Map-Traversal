@@ -5,7 +5,7 @@ import java.util.*;
 /** This class is the main entry point. */
 public class MapEngine {
 
-  private ArrayList<Country> countryList = new ArrayList<>();
+  private Set<Country> countryList = new HashSet<>();
 
   public MapEngine() {
     loadMap(); // keep this mehtod invocation
@@ -20,11 +20,22 @@ public class MapEngine {
       Country c = new Country(parts[0], parts[1], Integer.parseInt(parts[2]));
       countryList.add(c);
     }
-    List<String> adjacencies = Utils.readAdjacencies();
-    // for (String adjacency : adjacencies) {
-    //   String[] parts = adjacency.split(",");
-    // }
 
+    List<String> adjacencies = Utils.readAdjacencies();
+    for (String adjacency : adjacencies) {
+      String[] adjacents = adjacency.split(",");
+      for (int i = 1; i < adjacents.length; i++) {
+        for (Country c : countryList) {
+          if (c.getName().equalsIgnoreCase(adjacents[0])) {
+            for (Country n : countryList) {
+              if (n.getName().equalsIgnoreCase(adjacents[i])) {
+                c.addNeighbour(n);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   /** this method is invoked when the user run the command info-country. */

@@ -1,13 +1,13 @@
 package nz.ac.auckland.se281;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Country {
 
   private String name;
   private String continent;
   private int taxFee;
-  private ArrayList<Country> neighbours = new ArrayList<>();
+  private Set<Country> neighbours = new HashSet<>();
 
   public Country(String name, String continent, int taxFee) {
     this.name = name;
@@ -59,11 +59,11 @@ public class Country {
     this.taxFee = taxFee;
   }
 
-  public ArrayList<Country> getNeighbours() {
+  public Set<Country> getNeighbours() {
     return neighbours;
   }
 
-  public void setNeighbours(Country neighbour) {
+  public void addNeighbour(Country neighbour) {
     this.neighbours.add(neighbour);
   }
 }
