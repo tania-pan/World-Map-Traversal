@@ -2,16 +2,14 @@ package nz.ac.auckland.se281;
 
 import java.util.*;
 
-/** This class is the main entry point. */
 public class MapEngine {
 
   private Set<Country> countryList = new HashSet<>();
 
   public MapEngine() {
-    loadMap(); // keep this mehtod invocation
+    loadMap();
   }
 
-  /** invoked one time only when constracting the MapEngine class. */
   private void loadMap() {
 
     List<String> countries = Utils.readCountries();
@@ -39,22 +37,18 @@ public class MapEngine {
     while (true) {
       String userInput = Utils.scanner.nextLine();
       userInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
-      String[] parsedInput = userInput.split(" ");
 
-      // catch invalid country entered by the user
-      for (String input : parsedInput) {
-        try {
-          getCountry(input);
-        } catch (Exception InvalidCountryException) {
-          MessageCli.INVALID_COUNTRY.printMessage(input);
-          continue;
-        }
-        MessageCli.COUNTRY_INFO.printMessage(
-            getCountry(input).getName(),
-            getCountry(input).getContinent(),
-            String.valueOf(getCountry(input).getTaxFee()));
-        return;
+      // check if the user inputted country exists
+      try {
+        getCountry(userInput);
+      } catch (Exception InvalidCountryException) {
+        continue;
       }
+      MessageCli.COUNTRY_INFO.printMessage(
+          getCountry(userInput).getName(),
+          getCountry(userInput).getContinent(),
+          String.valueOf(getCountry(userInput).getTaxFee()));
+      return;
     }
   }
 
@@ -67,6 +61,6 @@ public class MapEngine {
         return c;
       }
     }
-    throw new InvalidCountryException();
+    throw new InvalidCountryException(countryName);
   }
 }
