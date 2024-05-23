@@ -22,45 +22,69 @@ public class MapEngine {
     List<String> adjacencies = Utils.readAdjacencies();
     for (String adjacency : adjacencies) {
       String[] adjacents = adjacency.split(",");
-      Country centreCountry = getCountry(adjacents[0]);
+      Country centreCountry = getCountryIfValid(adjacents[0]);
 
       for (int i = 1; i < adjacents.length; i++) {
-        centreCountry.addNeighbour(getCountry(adjacents[i]));
+        centreCountry.addNeighbour(getCountryIfValid(adjacents[i]));
       }
     }
   }
 
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
+
+    Country country;
     MessageCli.INSERT_COUNTRY.printMessage();
+    country = getUserInput();
 
-    while (true) {
-      String userInput = Utils.scanner.nextLine();
-      userInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
+    MessageCli.COUNTRY_INFO.printMessage(
+        country.getName(), country.getContinent(), String.valueOf(country.getTaxFee()));
+  }
 
-      // check if the user inputted country exists
-      try {
-        getCountry(userInput);
-      } catch (Exception InvalidCountryException) {
-        continue;
-      }
-      MessageCli.COUNTRY_INFO.printMessage(
-          getCountry(userInput).getName(),
-          getCountry(userInput).getContinent(),
-          String.valueOf(getCountry(userInput).getTaxFee()));
+  /** this method is invoked when the user run the command route. */
+  public void showRoute() {
+    Country startCountry;
+    Country endCountry;
+
+    MessageCli.INSERT_SOURCE.printMessage();
+    startCountry = getUserInput();
+
+    MessageCli.INSERT_DESTINATION.printMessage();
+    endCountry = getUserInput();
+
+    if (startCountry.equals(endCountry)) {
+      MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
       return;
     }
   }
 
-  /** this method is invoked when the user run the command route. */
-  public void showRoute() {}
-
-  public Country getCountry(String countryName) {
+  public Country getCountryIfValid(String countryName) {
     for (Country c : countryList) {
       if (c.getName().equals(countryName)) {
         return c;
       }
     }
     throw new InvalidCountryException(countryName);
+  }
+
+  public Country getUserInput() {
+
+    Country country;
+
+    // get user input until a valid country is entered
+    while (true) {
+      String userInput = Utils.scanner.nextLine();
+      userInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
+
+      // check if the user inputted country exists
+      try {
+        country = getCountryIfValid(userInput);
+      } catch (Exception InvalidCountryException) {
+        continue;
+      }
+
+      // no errors so input is valid
+      return country;
+    }
   }
 }
