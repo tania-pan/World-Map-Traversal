@@ -24,16 +24,10 @@ public class MapEngine {
     List<String> adjacencies = Utils.readAdjacencies();
     for (String adjacency : adjacencies) {
       String[] adjacents = adjacency.split(",");
+      Country centreCountry = getCountry(adjacents[0]);
+
       for (int i = 1; i < adjacents.length; i++) {
-        for (Country c : countryList) {
-          if (c.getName().equalsIgnoreCase(adjacents[0])) {
-            for (Country n : countryList) {
-              if (n.getName().equalsIgnoreCase(adjacents[i])) {
-                c.addNeighbour(n);
-              }
-            }
-          }
-        }
+        centreCountry.addNeighbour(getCountry(adjacents[i]));
       }
     }
   }
@@ -41,13 +35,24 @@ public class MapEngine {
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
     MessageCli.INSERT_COUNTRY.printMessage();
-    String country = Utils.scanner.nextLine();
 
-    // i reckon change this to something about hash codes tho maybe
-    for (Country c : countryList) {
-      if (c.getName().equalsIgnoreCase(country)) {
+    while (true) {
+      String userInput = Utils.scanner.nextLine();
+      userInput = Utils.capitalizeFirstLetterOfEachWord(userInput);
+      String[] parsedInput = userInput.split(" ");
+
+      // catch invalid country entered by the user
+      for (String input : parsedInput) {
+        try {
+          getCountry(input);
+        } catch (Exception InvalidCountryException) {
+          MessageCli.INVALID_COUNTRY.printMessage(input);
+          continue;
+        }
         MessageCli.COUNTRY_INFO.printMessage(
-            c.getName(), c.getContinent(), String.valueOf(c.getTaxFee()));
+            getCountry(input).getName(),
+            getCountry(input).getContinent(),
+            String.valueOf(getCountry(input).getTaxFee()));
         return;
       }
     }
@@ -55,4 +60,13 @@ public class MapEngine {
 
   /** this method is invoked when the user run the command route. */
   public void showRoute() {}
+
+  public Country getCountry(String countryName) {
+    for (Country c : countryList) {
+      if (c.getName().equals(countryName)) {
+        return c;
+      }
+    }
+    throw new InvalidCountryException();
+  }
 }
