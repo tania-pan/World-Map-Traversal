@@ -7,7 +7,7 @@ public class Country {
   private String name;
   private String continent;
   private int taxFee;
-  private Set<Country> neighbours = new HashSet<>();
+  private List<Country> neighbours = new ArrayList<>();
 
   public Country(String name, String continent, int taxFee) {
     this.name = name;
@@ -59,7 +59,7 @@ public class Country {
     this.taxFee = taxFee;
   }
 
-  public Set<Country> getNeighbours() {
+  public List<Country> getNeighbours() {
     return neighbours;
   }
 

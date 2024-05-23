@@ -5,6 +5,7 @@ import java.util.*;
 public class MapEngine {
 
   private Set<Country> countryList = new HashSet<>();
+  private Map<Country, List<Country>> neighbourMap = new HashMap<>();
 
   public MapEngine() {
     loadMap();
@@ -12,6 +13,7 @@ public class MapEngine {
 
   private void loadMap() {
 
+    // adding the countries
     List<String> countries = Utils.readCountries();
     for (String country : countries) {
       String[] parts = country.split(",");
@@ -19,6 +21,7 @@ public class MapEngine {
       countryList.add(c);
     }
 
+    // adding the neighbours of each country
     List<String> adjacencies = Utils.readAdjacencies();
     for (String adjacency : adjacencies) {
       String[] adjacents = adjacency.split(",");
@@ -27,6 +30,11 @@ public class MapEngine {
       for (int i = 1; i < adjacents.length; i++) {
         centreCountry.addNeighbour(getCountryIfValid(adjacents[i]));
       }
+    }
+
+    // mapping the neighbours of each country to the country
+    for (Country country : countryList) {
+      neighbourMap.put(country, country.getNeighbours());
     }
   }
 
