@@ -67,15 +67,19 @@ public class MapEngine {
     }
 
     List<Country> route = worldMap.getRoute(startCountry, endCountry);
+    List<String> continentRoute = worldMap.getContinentRoute(route);
 
     // convert route to string and add up tax fee
     ArrayList<String> routeNames = new ArrayList<>();
     for (Country c : route) {
       routeNames.add(c.getName());
-      taxFee += c.getTaxFee();
+      if (c != startCountry) {
+        taxFee += c.getTaxFee();
+      }
     }
 
     MessageCli.ROUTE_INFO.printMessage(routeNames.toString());
+    MessageCli.CONTINENT_INFO.printMessage(continentRoute.toString());
   }
 
   public Country getCountryIfValid(String countryName) {

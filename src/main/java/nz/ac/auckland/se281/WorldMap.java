@@ -46,6 +46,16 @@ public class WorldMap {
     return route;
   }
 
+  public List<String> getContinentRoute(List<Country> route) {
+    List<String> continentRoute = new LinkedList<>();
+    for (Country country : route) {
+      if (!continentRoute.contains(country.getContinent())) {
+        continentRoute.add(country.getContinent());
+      }
+    }
+    return continentRoute;
+  }
+
   public Map<Country, List<Country>> getNeighbourMap() {
     return neighbourMap;
   }
