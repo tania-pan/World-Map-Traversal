@@ -66,12 +66,15 @@ public class MapEngine {
       return;
     }
 
-    List<Country> route = worldMap.breadthFirstTraversal(startCountry, endCountry);
+    List<Country> route = worldMap.getRoute(startCountry, endCountry);
+
+    // convert route to string and add up tax fee
     ArrayList<String> routeNames = new ArrayList<>();
     for (Country c : route) {
       routeNames.add(c.getName());
       taxFee += c.getTaxFee();
     }
+
     MessageCli.ROUTE_INFO.printMessage(routeNames.toString());
   }
 
