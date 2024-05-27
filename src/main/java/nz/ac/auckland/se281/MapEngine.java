@@ -5,7 +5,7 @@ import java.util.*;
 public class MapEngine {
 
   private Set<Country> countryList = new HashSet<>();
-  private Map<Country, List<Country>> neighbourMap = new HashMap<>();
+  private WorldMap worldMap = new WorldMap();
 
   public MapEngine() {
     loadMap();
@@ -34,7 +34,7 @@ public class MapEngine {
 
     // mapping the neighbours of each country to the country
     for (Country country : countryList) {
-      neighbourMap.put(country, country.getNeighbours());
+      worldMap.addNeighbour(country);
     }
   }
 
@@ -53,17 +53,26 @@ public class MapEngine {
   public void showRoute() {
     Country startCountry;
     Country endCountry;
+    int taxFee = 0;
 
     MessageCli.INSERT_SOURCE.printMessage();
     startCountry = getUserInput();
-
     MessageCli.INSERT_DESTINATION.printMessage();
     endCountry = getUserInput();
 
+    // check if the start and end countries are the same
     if (startCountry.equals(endCountry)) {
       MessageCli.NO_CROSSBORDER_TRAVEL.printMessage();
       return;
     }
+
+    List<Country> route = worldMap.breadthFirstTraversal(startCountry, endCountry);
+    ArrayList<String> routeNames = new ArrayList<>();
+    for (Country c : route) {
+      routeNames.add(c.getName());
+      taxFee += c.getTaxFee();
+    }
+    MessageCli.ROUTE_INFO.printMessage(routeNames.toString());
   }
 
   public Country getCountryIfValid(String countryName) {
