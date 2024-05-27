@@ -80,6 +80,7 @@ public class MapEngine {
 
     MessageCli.ROUTE_INFO.printMessage(routeNames.toString());
     MessageCli.CONTINENT_INFO.printMessage(continentRoute.toString());
+    MessageCli.TAX_INFO.printMessage(String.valueOf(taxFee));
   }
 
   public Country getCountryIfValid(String countryName) {
