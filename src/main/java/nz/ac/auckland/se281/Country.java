@@ -10,12 +10,12 @@ public class Country {
   private List<Country> neighbours = new ArrayList<>();
 
   /**
-   * Constructor for Country
-   * 
-   * @param name name of country
-   * @param continent continent country is in
-   * @param taxFee tax fee of country
-   */
+  * This is the constructor for the country object.
+  * 
+  * @param name      name of country
+  * @param continent continent country is in
+  * @param taxFee    tax fee of country
+  */
   public Country(String name, String continent, int taxFee) {
     this.name = name;
     this.continent = continent;
@@ -23,9 +23,9 @@ public class Country {
   }
 
   /**
-   * Overriding the hashcode method to compare countries by their names
-   * 
-   * @return hashcode of the country
+  * Overriding the hashcode method to compare countries by their names.
+  * 
+  * @return hashcode of the country
   */
   @Override
   public int hashCode() {
@@ -36,11 +36,11 @@ public class Country {
   }
 
   /**
-   * Overriding the equals method to compare countries by their names
-   * 
-   * @param obj country to compare
-   * @return true if the countries are equal, false otherwise
-   */
+  * Overriding the equals method to compare countries by their names.
+  * 
+  * @param obj country to compare
+  * @return    true if the countries are equal, false otherwise
+  */
   @Override
   public boolean equals(Object obj) {
     if (this.name == ((Country) obj).getName()) {
@@ -51,73 +51,73 @@ public class Country {
   }
 
   /**
-   * Getter for country name
-   * 
-   * @return country name
-   */
+  * This method is the getter for a country's name.
+  * 
+  * @return country name
+  */
   public String getName() {
     return name;
   }
 
   /**
-   * Setter for country name
-   * 
-   * @param name country name
-   */
+  * This method is the setter for a country's name.
+  * 
+  * @param name country's name
+  */
   public void setName(String name) {
     this.name = name;
   }
 
   /**
-   * Getter for continent
-   * 
-   * @return continent
-   */
+  * This method is the getter for a country's continent.
+  * 
+  * @return continent that the country is in
+  */
   public String getContinent() {
     return continent;
   }
 
   /**
-   * Setter for continent
-   * 
-   * @param continent continent
-   */
+  * This method is the setter for a country's continent.
+  * 
+  * @param continent continent that the country is in
+  */
   public void setContinent(String continent) {
     this.continent = continent;
   }
 
   /**
-   * Getter for tax fee
-   * 
-   * @return tax fee
-   */
+  * This method is the getter for tax fee.
+  * 
+  * @return tax fee
+  */
   public int getTaxFee() {
     return taxFee;
   }
 
   /**
-   * Setter for tax fee
-   * 
-   * @param taxFee tax fee
-   */
+  * This method is the setter for a country's tax fee.
+  * 
+  * @param taxFee tax fee
+  */
   public void setTaxFee(int taxFee) {
     this.taxFee = taxFee;
   }
 
   /**
-   * Getter for country's neighbours
-   * 
-   * @return list of neighbours
-   */
+  * This method is the getter for a country's neighbours.
+  * 
+  * @return list of neighbours
+  */
   public List<Country> getNeighbours() {
     return neighbours;
   }
 
   /**
-   * Setter for country's neighbours
-   * 
-   * @param neighbours list of neighbours
-   */
+  * This method is the setter for country's neighbours.
+  * 
+  * @param neighbour neighbouring country to add
+  */
   public void addNeighbour(Country neighbour) {
     this.neighbours.add(neighbour);
   }

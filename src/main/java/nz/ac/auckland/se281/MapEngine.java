@@ -11,7 +11,10 @@ public class MapEngine {
     loadMap();
   }
 
-  /** This method reads the countries and their neighbours from the files and creates the map of the world. */
+  /** 
+  * This method reads the countries and their neighbours from the files 
+  * and creates the map of the world. 
+  **/
   private void loadMap() {
 
     // adding the countries
@@ -85,12 +88,13 @@ public class MapEngine {
   }
 
   /**
-   * This method returns the country object to be found if the country name is valid. Otherwise, it throws an exception.
-   * 
-   * @param countryName the country the user wishes to find
-   * @return the country object the user wants
-   * @throws InvalidCountryException 
-   */
+  * This method returns the country object to be found if the country name is valid. 
+  * Otherwise, it throws an exception.
+  * 
+  * @param countryName the country the user wishes to find
+  * @return the country object the user wants
+  * @throws InvalidCountryException when the country is not found
+  */
   public Country getCountryIfValid(String countryName) {
     for (Country c : countryList) {
       if (c.getName().equals(countryName)) {
@@ -101,12 +105,13 @@ public class MapEngine {
   }
 
   /**
-   * This method returns the country object to be found if the country name is valid. Otherwise, it throws an exception.
-   * 
-   * @param countryName the country the user wishes to find
-   * @return the country object the user wants
-   * @throws InvalidCountryException 
-   */
+  * This method returns the country object to be found if the country name is valid. 
+  * Otherwise, it throws an exception.
+  * 
+  * @param countryName the country the user wishes to find
+  * @return the country object the user wants
+  * @throws InvalidCountryException when the country is not found
+  */
   public Country getUserInput() {
 
     Country country;
