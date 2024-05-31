@@ -11,6 +11,7 @@ public class MapEngine {
     loadMap();
   }
 
+  /** This method reads the countries and their neighbours from the files and creates the map of the world. */
   private void loadMap() {
 
     // adding the countries
@@ -38,7 +39,7 @@ public class MapEngine {
     }
   }
 
-  /** this method is invoked when the user run the command info-country. */
+  /** this method is invoked when the user runs the command info-country. */
   public void showInfoCountry() {
 
     Country country;
@@ -83,6 +84,13 @@ public class MapEngine {
     MessageCli.TAX_INFO.printMessage(String.valueOf(taxFee));
   }
 
+  /**
+   * This method returns the country object to be found if the country name is valid. Otherwise, it throws an exception.
+   * 
+   * @param countryName the country the user wishes to find
+   * @return the country object the user wants
+   * @throws InvalidCountryException 
+   */
   public Country getCountryIfValid(String countryName) {
     for (Country c : countryList) {
       if (c.getName().equals(countryName)) {
@@ -92,6 +100,13 @@ public class MapEngine {
     throw new InvalidCountryException(countryName);
   }
 
+  /**
+   * This method returns the country object to be found if the country name is valid. Otherwise, it throws an exception.
+   * 
+   * @param countryName the country the user wishes to find
+   * @return the country object the user wants
+   * @throws InvalidCountryException 
+   */
   public Country getUserInput() {
 
     Country country;
@@ -104,7 +119,7 @@ public class MapEngine {
       // check if the user inputted country exists
       try {
         country = getCountryIfValid(userInput);
-      } catch (Exception InvalidCountryException) {
+      } catch (InvalidCountryException e) {
         continue;
       }
 
