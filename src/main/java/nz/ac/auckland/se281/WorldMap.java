@@ -6,13 +6,17 @@ public class WorldMap {
 
   private Map<Country, List<Country>> neighbourMap = new HashMap<>();
 
-  /** puts all the neighbouring countries of a country into a list */
+  /** 
+   * adds the neighbour country of a country into a list.
+   * 
+   * @param country country to add neighbours to
+   */
   public void addNeighbour(Country country) {
     neighbourMap.put(country, country.getNeighbours());
   }
 
   /**
-  * This method finds the route from one country to another using BFS algorithm.
+  * This method finds the shortest route from one country to another using BFS algorithm.
   * 
   * @param startCountry starting country of the route
   * @param endCountry destination of the route
@@ -55,10 +59,10 @@ public class WorldMap {
   }
 
   /**
-  * This method finds the shortest route from one country to another using BFS algorithm.
+  * This method finds the route of continents from one country to another.
   * 
-  * @param route
-  * @return
+  * @param route list of countries in the route
+  * @return list of continents in the route
   */
   public List<String> getContinentRoute(List<Country> route) {
     List<String> continentRoute = new LinkedList<>();
@@ -71,7 +75,7 @@ public class WorldMap {
   }
 
   /**
-  * This method returns the map of countries and their neighbours.
+  * This method gets the map of countries and their neighbours.
   * 
   * @return map of countries and their neighbours
   */

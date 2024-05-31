@@ -115,7 +115,7 @@ public class Country {
 
   /**
   * This method is the setter for country's neighbours.
-  * 
+  *
   * @param neighbour neighbouring country to add
   */
   public void addNeighbour(Country neighbour) {
