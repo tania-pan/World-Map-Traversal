@@ -90,7 +90,7 @@ public class MapEngine {
   /**
   * This method returns the country object to be found if the country name is valid. 
   * Otherwise, it throws an exception.
-  * 
+  
   * @param countryName the country the user wishes to find
   * @return the country object the user wants
   * @throws InvalidCountryException when the country is not found
@@ -107,7 +107,7 @@ public class MapEngine {
   /**
   * This method returns the country object to be found if the country name is valid. 
   * Otherwise, it throws an exception.
-  *
+  
   * @return the country object the user wants
   * @throws InvalidCountryException when the country is not found
   */

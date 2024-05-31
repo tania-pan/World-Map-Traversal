@@ -11,7 +11,7 @@ public class Country {
 
   /**
   * This is the constructor for the country object.
-  * 
+  
   * @param name      name of country
   * @param continent continent country is in
   * @param taxFee    tax fee of country
@@ -24,7 +24,7 @@ public class Country {
 
   /**
   * Overriding the hashcode method to compare countries by their names.
-  * 
+  
   * @return hashcode of the country
   */
   @Override
@@ -37,7 +37,7 @@ public class Country {
 
   /**
   * Overriding the equals method to compare countries by their names.
-  * 
+  
   * @param obj country to compare
   * @return    true if the countries are equal, false otherwise
   */
@@ -52,7 +52,7 @@ public class Country {
 
   /**
   * This method is the getter for a country's name.
-  * 
+  
   * @return country name
   */
   public String getName() {
@@ -61,7 +61,7 @@ public class Country {
 
   /**
   * This method is the setter for a country's name.
-  * 
+  
   * @param name country's name
   */
   public void setName(String name) {
@@ -70,7 +70,7 @@ public class Country {
 
   /**
   * This method is the getter for a country's continent.
-  * 
+  
   * @return continent that the country is in
   */
   public String getContinent() {
@@ -79,7 +79,7 @@ public class Country {
 
   /**
   * This method is the setter for a country's continent.
-  * 
+  
   * @param continent continent that the country is in
   */
   public void setContinent(String continent) {
@@ -88,7 +88,7 @@ public class Country {
 
   /**
   * This method is the getter for tax fee.
-  * 
+  
   * @return tax fee
   */
   public int getTaxFee() {
@@ -97,7 +97,7 @@ public class Country {
 
   /**
   * This method is the setter for a country's tax fee.
-  * 
+  
   * @param taxFee tax fee
   */
   public void setTaxFee(int taxFee) {
@@ -106,7 +106,7 @@ public class Country {
 
   /**
   * This method is the getter for a country's neighbours.
-  * 
+  
   * @return list of neighbours
   */
   public List<Country> getNeighbours() {
@@ -115,7 +115,7 @@ public class Country {
 
   /**
   * This method is the setter for country's neighbours.
-  *
+
   * @param neighbour neighbouring country to add
   */
   public void addNeighbour(Country neighbour) {
